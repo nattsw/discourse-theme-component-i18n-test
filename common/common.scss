@@ -1,0 +1,39 @@
+.object-resources {
+  margin-block-end: 1.5em;
+
+  &__section {
+    padding: 1em;
+    border: 1px solid var(--primary-low);
+    border-radius: var(--d-border-radius);
+    background: var(--secondary);
+  }
+
+  &__title {
+    font-size: var(--font-up-1);
+  }
+
+  &__links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16em), 1fr));
+    gap: 1em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+
+  &__description {
+    color: var(--primary-high);
+    margin-block: 0.5em 0;
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Community resources",
+  "component": true,
+  "authors": "Natalie Tay",
+  "theme_version": "0.1.0",
+  "modifiers": { "svg_icons": ["book", "circle-info", "link"] }
+}

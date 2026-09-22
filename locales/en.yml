@@ -1,0 +1,24 @@
+en:
+  theme_metadata:
+    description: "Object-editor resources for experimenting with dynamic translation keys."
+    settings:
+      resource_sections:
+        description: "Resource sections and nested links. Use unique, permanent keys containing lowercase letters, numbers, and underscores."
+        schema:
+          properties:
+            key:
+              label: "Section translation key"
+              description: "Keep this unchanged when editing or reordering. Choose a new key when duplicating."
+            title:
+              label: "Default title"
+            links:
+              key:
+                label: "Link translation key"
+              label:
+                label: "Default label"
+              description:
+                label: "Default description"
+              url:
+                label: "URL"
+              icon:
+                label: "Icon"

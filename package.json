@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@discourse/lint-configs": "2.43.0",
+    "eslint": "9.39.2",
+    "prettier": "3.8.1",
+    "stylelint": "17.4.0"
+  }
+}
