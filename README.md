@@ -9,8 +9,8 @@ nested links with a label, description, URL, and icon.
 
 The introductory sentence above the resources uses `resource_intro` from
 `locales/en.yml`, rendered with `i18n(themePrefix("resource_intro"))`. It appears
-in the component's standard translation controls and supports
-`ThemeTranslationOverride`, including the existing AI Translate action.
+in Site texts alongside object-editor fields and retains `ThemeTranslationOverride`
+storage. The theme settings page links to Site texts for editing and AI translation.
 
 Use it to test translating a shipped default and a site-specific English override
 alongside the dynamic object-editor fields below.
@@ -23,7 +23,7 @@ section. Changing text or reordering objects preserves translations; duplicating
 object requires a new key.
 
 The schema declares the identifier property and translatable fields using
-`translation_key_preview: { key: key, fields: [label, description] }`. Core supplies
+`translations: { key: key, fields: [label, description] }`. Core supplies
 the theme namespace and setting name; no custom prefix is needed.
 
 The component loops through sections and links and translates these relative keys:
@@ -48,8 +48,9 @@ Saving the settings registers the default text in Site texts through the local
 core extension. **Manage translations** opens the component's Site texts view,
 which includes both these fields and `resource_intro`. Default text changes mark
 translations outdated; removing an object removes its registered translations.
-**Translate object-editor text** translates the registered fields with AI. The
-locale-file introduction currently uses the theme's existing AI translation action.
+**Translate** covers both the registered fields and the locale-file introduction.
+Existing translations, including shipped locale-file translations, are preserved
+unless **Override existing translations** is selected.
 
 This testing component requires the local core object-editor translation feature.
 Theme components themselves contain no Ruby registration code.

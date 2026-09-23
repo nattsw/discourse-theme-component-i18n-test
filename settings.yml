@@ -17,7 +17,7 @@ resource_sections:
   schema:
     name: resource_section
     identifier: title
-    translation_key_preview:
+    translations:
       key: key
       fields:
         - title
@@ -36,7 +36,7 @@ resource_sections:
         schema:
           name: resource_link
           identifier: label
-          translation_key_preview:
+          translations:
             key: key
             fields:
               - label
