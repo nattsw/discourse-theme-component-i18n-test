@@ -2,9 +2,9 @@ import Component from "@glimmer/component";
 import dIcon from "discourse/ui-kit/helpers/d-icon";
 import { i18n } from "discourse-i18n";
 
-function localized(key, source) {
-  return i18n(`community_resources.${key}`, {
-    defaultValue: source || "",
+function localized(key, defaultText) {
+  return i18n(themePrefix(`resource_sections.${key}`), {
+    defaultValue: defaultText || "",
   });
 }
 

@@ -15,58 +15,44 @@ in the component's standard translation controls and supports
 Use it to test translating a shipped default and a site-specific English override
 alongside the dynamic object-editor fields below.
 
-## Keys and source text
+## Object-editor text
 
 Each section and link has a manually assigned stable `key`. Use lowercase letters,
 numbers, and underscores, with unique section keys and unique link keys within each
 section. Changing text or reordering objects preserves translations; duplicating an
-object requires a new key. Automatic persisted IDs are a future core integration,
-not something this prototype provides.
+object requires a new key.
 
-The component derives these global frontend keys:
+The schema declares the identifier property and translatable fields using
+`translation_key_preview: { key: key, fields: [label, description] }`. Core supplies
+the theme namespace and setting name; no custom prefix is needed.
 
-- `community_resources.<section>.title`
-- `community_resources.<section>.<link>.label`
-- `community_resources.<section>.<link>.description`
+The component loops through sections and links and translates these relative keys:
 
-For example, `community_resources.getting_started.guidelines.label` uses the source
-label from the object editor as its `defaultValue`. These are global lookups, not
-`themePrefix` lookups or keys declared in theme locale YAML. The prototype reserves
-`community_resources` for this component; multiple independent copies would need
-separate namespaces.
+- `resource_sections.<section>.title`
+- `resource_sections.<section>.<link>.label`
+- `resource_sections.<section>.<link>.description`
 
-The object editor's read-only **Usable translation keys** block updates as you edit
-the section or link translation key. **Default title**, **Default label**, and
-**Default description** provide the source text used when no translation exists.
-The live preview depends on the local core extension that reads
-`translation_key_preview` schema metadata. The root schema supplies the
-`community_resources` prefix; each ancestor and current object's `key` contributes
-one segment, followed by a field from `fields`. This metadata displays the keys;
-it does not register them in Site texts or create translations.
+For example:
 
-## Local console experiment
-
-On a disposable development site, create a previously unused override:
-
-```ruby
-TranslationOverride.upsert!(
-  "fr",
-  "js.community_resources.getting_started.guidelines.label",
-  "Règles de la communauté",
-)
+```js
+i18n(themePrefix(`resource_sections.${section.key}.${link.key}.label`), {
+  defaultValue: link.label,
+});
 ```
 
-The `js.` prefix is required for server-side client translation delivery. Open the
-site in French and reload to compare the translated label with the source fallback
-for the other fields. The site must allow user locale selection to test through
-user preferences. The component itself does not change site settings or users.
+`themePrefix` scopes keys to this component's installed theme ID. Multiple copies
+can use identical settings and object identifiers without sharing translations.
+The editor previews the relative keys to pass to `themePrefix`.
 
-This is deliberately a temporary experiment. Site texts still does not discover
-these custom keys, and override updates or the scheduled translation cleanup may
-mark an override deprecated because there is no shipped original. Theme
-installation does not register these keys or create override records. There is no
-AI action, source-change tracking, automatic cleanup, or production-ready custom
-translation lifecycle in this component.
+Saving the settings registers the default text in Site texts through the local
+core extension. **Manage translations** opens the component's Site texts view,
+which includes both these fields and `resource_intro`. Default text changes mark
+translations outdated; removing an object removes its registered translations.
+**Translate object-editor text** translates the registered fields with AI. The
+locale-file introduction currently uses the theme's existing AI translation action.
+
+This testing component requires the local core object-editor translation feature.
+Theme components themselves contain no Ruby registration code.
 
 ## Development
 

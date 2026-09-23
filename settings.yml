@@ -18,7 +18,6 @@ resource_sections:
     name: resource_section
     identifier: title
     translation_key_preview:
-      prefix: community_resources
       key: key
       fields:
         - title
