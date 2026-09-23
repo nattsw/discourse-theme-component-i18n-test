@@ -1,4 +1,5 @@
 en:
+  resource_intro: "Explore these links to learn more about our community."
   theme_metadata:
     description: "Object-editor resources for experimenting with dynamic translation keys."
     settings:

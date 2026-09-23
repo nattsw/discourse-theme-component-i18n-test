@@ -5,6 +5,16 @@ translation keys. Resources appear above discovery topic lists, including catego
 lists. Edit **Resource sections** in the component settings to add sections and
 nested links with a label, description, URL, and icon.
 
+## Locale-backed theme text
+
+The introductory sentence above the resources uses `resource_intro` from
+`locales/en.yml`, rendered with `i18n(themePrefix("resource_intro"))`. It appears
+in the component's standard translation controls and supports
+`ThemeTranslationOverride`, including the existing AI Translate action.
+
+Use it to test translating a shipped default and a site-specific English override
+alongside the dynamic object-editor fields below.
+
 ## Keys and source text
 
 Each section and link has a manually assigned stable `key`. Use lowercase letters,

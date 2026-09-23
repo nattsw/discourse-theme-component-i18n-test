@@ -26,6 +26,9 @@ export default class ObjectResources extends Component {
   <template>
     {{#if this.sections.length}}
       <div class="object-resources" ...attributes>
+        <p class="object-resources__intro">
+          {{i18n (themePrefix "resource_intro")}}
+        </p>
         {{#each this.sections as |resourceSection|}}
           {{#if resourceSection.links.length}}
             <section class="object-resources__section">
