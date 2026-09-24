@@ -2,7 +2,7 @@ import Component from "@glimmer/component";
 import { i18n } from "discourse-i18n";
 
 function translateCardField(card, field) {
-  return i18n(themePrefix(`welcome_cards.${card.i18n_identifier}.${field}`), {
+  return i18n(themePrefix(`welcome_cards.${card.identifier}.${field}`), {
     defaultValue: card[field] || "",
   });
 }

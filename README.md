@@ -11,7 +11,7 @@ Replace the example button destinations with your own topics or categories. The
 example destinations use existing Discourse routes so they work without creating
 categories first.
 
-Each card needs a unique **Translation identifier**, such as `introductions`.
+Each card needs a unique **Identifier**, such as `introductions`.
 Use lowercase letters, numbers, and underscores, starting with a letter. Keep the
 identifier unchanged when editing text or reordering cards. When duplicating a
 card, give the copy a new identifier.
@@ -23,12 +23,25 @@ The heading and introduction are ordinary theme translations from `locales/en.ym
 - `welcome_heading`
 - `welcome_message`
 
-The card schema declares its translatable text:
+The card schema uses a required `identifier` property and marks each text field
+with `translatable: true`. No `translations` declaration is needed:
 
 ```yaml
-translations:
-  key: i18n_identifier
-  fields: [title, description, button_text]
+properties:
+  identifier:
+    type: string
+    required: true
+  title:
+    type: string
+    translatable: true
+  description:
+    type: string
+    translatable: true
+  button_text:
+    type: string
+    translatable: true
+  destination:
+    type: string
 ```
 
 The component loops through the saved cards and translates those three fields.
@@ -61,8 +74,8 @@ cards.
 
 ## Identifier rename
 
-The settings migration renames saved card properties from `translation_identifier`
-to `i18n_identifier`, preserving the identifier values and generated translation keys.
+The settings migrations rename saved card properties from `translation_identifier`
+or `i18n_identifier` to `identifier`, preserving their values and generated translation keys.
 
 The experimental core integration currently validates object translation keys before
 running theme settings migrations. Updating an existing installation with saved cards

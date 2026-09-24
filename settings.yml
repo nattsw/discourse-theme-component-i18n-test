@@ -1,17 +1,17 @@
 welcome_cards:
   type: objects
   default:
-    - i18n_identifier: introductions
+    - identifier: introductions
       title: Introduce yourself
       description: Tell us a little about yourself and meet other members.
       button_text: Say hello
       destination: /latest
-    - i18n_identifier: questions
+    - identifier: questions
       title: Ask a question
       description: Get help and share what you know with the community.
       button_text: Explore discussions
       destination: /categories
-    - i18n_identifier: guidelines
+    - identifier: guidelines
       title: Feel at home
       description: Learn how we keep this a welcoming place for everyone.
       button_text: Read our guidelines
@@ -19,11 +19,8 @@ welcome_cards:
   schema:
     name: welcome_card
     identifier: title
-    translations:
-      key: i18n_identifier
-      fields: [title, description, button_text]
     properties:
-      i18n_identifier:
+      identifier:
         type: string
         required: true
         validations:
@@ -31,12 +28,15 @@ welcome_cards:
           max_length: 80
       title:
         type: string
+        translatable: true
         required: true
       description:
         type: string
+        translatable: true
         textarea: true
       button_text:
         type: string
+        translatable: true
         required: true
       destination:
         type: string
