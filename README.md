@@ -27,7 +27,7 @@ The card schema declares its translatable text:
 
 ```yaml
 translations:
-  key: translation_identifier
+  key: i18n_identifier
   fields: [title, description, button_text]
 ```
 
@@ -58,6 +58,16 @@ This version replaces `resource_sections` with `welcome_cards`. Existing resourc
 settings and translations are not migrated to the new cards. Record any content
 or translations you want to keep before updating, then recreate them as welcome
 cards.
+
+## Identifier rename
+
+The settings migration renames saved card properties from `translation_identifier`
+to `i18n_identifier`, preserving the identifier values and generated translation keys.
+
+The experimental core integration currently validates object translation keys before
+running theme settings migrations. Updating an existing installation with saved cards
+can therefore fail validation during this rename. Core needs to validate the migrated
+settings; fresh installations are unaffected.
 
 ## Development
 

@@ -8,7 +8,7 @@ en:
         description: "Add welcome cards and choose where their buttons lead. Replace the example destinations with pages on your forum."
         schema:
           properties:
-            translation_identifier:
+            i18n_identifier:
               label: Translation identifier
               description: "Use a unique name such as introductions, starting with a lowercase letter and containing only lowercase letters, numbers, and underscores. Keep it unchanged to preserve translations. Choose a new identifier when duplicating a card."
             title:
