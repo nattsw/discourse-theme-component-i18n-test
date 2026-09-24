@@ -1,17 +1,17 @@
 welcome_cards:
   type: objects
   default:
-    - identifier: introductions
+    - translation_key: introductions
       title: Introduce yourself
       description: Tell us a little about yourself and meet other members.
       button_text: Say hello
       destination: /latest
-    - identifier: questions
+    - translation_key: questions
       title: Ask a question
       description: Get help and share what you know with the community.
       button_text: Explore discussions
       destination: /categories
-    - identifier: guidelines
+    - translation_key: guidelines
       title: Feel at home
       description: Learn how we keep this a welcoming place for everyone.
       button_text: Read our guidelines
@@ -20,7 +20,7 @@ welcome_cards:
     name: welcome_card
     identifier: title
     properties:
-      identifier:
+      translation_key:
         type: string
         required: true
         validations:

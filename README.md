@@ -11,7 +11,7 @@ Replace the example button destinations with your own topics or categories. The
 example destinations use existing Discourse routes so they work without creating
 categories first.
 
-Each card needs a unique **Identifier**, such as `introductions`.
+Each card needs a unique **Translation key**, such as `introductions`.
 Use lowercase letters, numbers, and underscores, starting with a letter. Keep the
 identifier unchanged when editing text or reordering cards. When duplicating a
 card, give the copy a new identifier.
@@ -23,12 +23,12 @@ The heading and introduction are ordinary theme translations from `locales/en.ym
 - `welcome_heading`
 - `welcome_message`
 
-The card schema uses a required `identifier` property and marks each text field
+The card schema uses a required `translation_key` property and marks each text field
 with `translatable: true`. No `translations` declaration is needed:
 
 ```yaml
 properties:
-  identifier:
+  translation_key:
     type: string
     required: true
   title:
