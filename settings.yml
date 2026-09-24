@@ -1,28 +1,29 @@
-resource_sections:
+welcome_cards:
   type: objects
   default:
-    - key: getting_started
-      title: Resources
-      links:
-        - key: guidelines
-          label: Community guidelines
-          description: Learn how to take part in the community.
-          url: /guidelines
-          icon: book
-        - key: about
-          label: About this community
-          description: Meet the people behind this space.
-          url: /about
-          icon: circle-info
+    - translation_identifier: introductions
+      title: Introduce yourself
+      description: Tell us a little about yourself and meet other members.
+      button_text: Say hello
+      destination: /latest
+    - translation_identifier: questions
+      title: Ask a question
+      description: Get help and share what you know with the community.
+      button_text: Explore discussions
+      destination: /categories
+    - translation_identifier: guidelines
+      title: Feel at home
+      description: Learn how we keep this a welcoming place for everyone.
+      button_text: Read our guidelines
+      destination: /guidelines
   schema:
-    name: resource_section
+    name: welcome_card
     identifier: title
     translations:
-      key: key
-      fields:
-        - title
+      key: translation_identifier
+      fields: [title, description, button_text]
     properties:
-      key:
+      translation_identifier:
         type: string
         required: true
         validations:
@@ -31,38 +32,14 @@ resource_sections:
       title:
         type: string
         required: true
-      links:
-        type: objects
-        schema:
-          name: resource_link
-          identifier: label
-          translations:
-            key: key
-            fields:
-              - label
-              - description
-          properties:
-            key:
-              type: string
-              required: true
-              validations:
-                min_length: 1
-                max_length: 80
-            label:
-              type: string
-              required: true
-            description:
-              type: string
-              textarea: true
-            url:
-              type: string
-              required: true
-              validations:
-                url: true
-            icon:
-              type: enum
-              default: link
-              choices:
-                - link
-                - book
-                - circle-info
+      description:
+        type: string
+        textarea: true
+      button_text:
+        type: string
+        required: true
+      destination:
+        type: string
+        required: true
+        validations:
+          url: true

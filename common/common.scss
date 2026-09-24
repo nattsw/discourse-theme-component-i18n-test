@@ -1,39 +1,46 @@
-.object-resources {
+.community-welcome {
   margin-block-end: 1.5em;
 
-  &__section {
-    padding: 1em;
+  &__heading {
+    margin-block-end: 0.25em;
+  }
+
+  &__introduction {
+    margin-block: 0 1em;
+    color: var(--primary-high);
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15em), 1fr));
+    gap: 1em;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 1.25em;
     border: 1px solid var(--primary-low);
     border-radius: var(--d-border-radius);
     background: var(--secondary);
-  }
-
-  &__title {
-    font-size: var(--font-up-1);
-  }
-
-  &__links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16em), 1fr));
-    gap: 1em;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__item {
-    min-width: 0;
     overflow-wrap: anywhere;
   }
 
-  &__link {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5em;
+  &__title {
+    margin-block: 0 0.5em;
+    font-size: var(--font-up-1);
   }
 
   &__description {
+    margin-block: 0 1em;
     color: var(--primary-high);
-    margin-block: 0.5em 0;
+  }
+
+  &__button {
+    margin-block-start: auto;
+    max-width: 100%;
+    white-space: normal;
   }
 }

@@ -1,25 +1,22 @@
 en:
-  resource_intro: "Explore these links to learn more about our community."
+  welcome_heading: Welcome to our community
+  welcome_message: Find your way around and join the conversation.
   theme_metadata:
-    description: "Object-editor resources for experimenting with dynamic translation keys."
+    description: A welcome panel with editable cards to help newcomers find their way around.
     settings:
-      resource_sections:
-        description: "Resource sections and nested links. Use unique, permanent keys containing lowercase letters, numbers, and underscores."
+      welcome_cards:
+        description: "Add welcome cards and choose where their buttons lead. Replace the example destinations with pages on your forum."
         schema:
           properties:
-            key:
-              label: "Section translation key"
-              description: "Keep this unchanged when editing or reordering. Choose a new key when duplicating."
+            translation_identifier:
+              label: Translation identifier
+              description: "Use a unique name such as introductions, starting with a lowercase letter and containing only lowercase letters, numbers, and underscores. Keep it unchanged to preserve translations. Choose a new identifier when duplicating a card."
             title:
-              label: "Default title"
-            links:
-              key:
-                label: "Link translation key"
-              label:
-                label: "Default label"
-              description:
-                label: "Default description"
-              url:
-                label: "URL"
-              icon:
-                label: "Icon"
+              label: Card title
+            description:
+              label: Card description
+            button_text:
+              label: Button text
+            destination:
+              label: Button destination
+              description: "Enter a page address, such as /guidelines or the address of your introductions topic."

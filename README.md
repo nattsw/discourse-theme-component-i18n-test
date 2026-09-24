@@ -1,62 +1,65 @@
-# Community resources
+# Community welcome
 
-A local theme component for testing object-editor content with dynamically derived
-translation keys. Resources appear above discovery topic lists, including category
-lists. Edit **Resource sections** in the component settings to add sections and
-nested links with a label, description, URL, and icon.
+A welcome panel above the topic list, with a heading, introduction, and editable
+cards. Each card has a title, description, and a button leading to a page on your
+forum.
 
-## Locale-backed theme text
+## Configure the panel
 
-The introductory sentence above the resources uses `resource_intro` from
-`locales/en.yml`, rendered with `i18n(themePrefix("resource_intro"))`. It appears
-in Site texts alongside object-editor fields and retains `ThemeTranslationOverride`
-storage. The theme settings page links to Site texts for editing and AI translation.
+Open **Welcome cards** in the component settings to add, remove, or reorder cards.
+Replace the example button destinations with your own topics or categories. The
+example destinations use existing Discourse routes so they work without creating
+categories first.
 
-Use it to test translating a shipped default and a site-specific English override
-alongside the dynamic object-editor fields below.
+Each card needs a unique **Translation identifier**, such as `introductions`.
+Use lowercase letters, numbers, and underscores, starting with a letter. Keep the
+identifier unchanged when editing text or reordering cards. When duplicating a
+card, give the copy a new identifier.
 
-## Object-editor text
+## Translate the panel
 
-Each section and link has a manually assigned stable `key`. Use lowercase letters,
-numbers, and underscores, with unique section keys and unique link keys within each
-section. Changing text or reordering objects preserves translations; duplicating an
-object requires a new key.
+The heading and introduction are ordinary theme translations from `locales/en.yml`:
 
-The schema declares the identifier property and translatable fields using
-`translations: { key: key, fields: [label, description] }`. Core supplies
-the theme namespace and setting name; no custom prefix is needed.
+- `welcome_heading`
+- `welcome_message`
 
-The component loops through sections and links and translates these relative keys:
+The card schema declares its translatable text:
 
-- `resource_sections.<section>.title`
-- `resource_sections.<section>.<link>.label`
-- `resource_sections.<section>.<link>.description`
-
-For example:
-
-```js
-i18n(themePrefix(`resource_sections.${section.key}.${link.key}.label`), {
-  defaultValue: link.label,
-});
+```yaml
+translations:
+  key: translation_identifier
+  fields: [title, description, button_text]
 ```
 
-`themePrefix` scopes keys to this component's installed theme ID. Multiple copies
-can use identical settings and object identifiers without sharing translations.
-The editor previews the relative keys to pass to `themePrefix`.
+The component loops through the saved cards and translates those three fields.
+For example, the first card's button uses
+`welcome_cards.introductions.button_text`. `themePrefix` adds the installed
+component's namespace, so the component never hard-codes a theme ID.
 
-Saving the settings registers the default text in Site texts through the local
-core extension. **Manage translations** opens the component's Site texts view,
-which includes both these fields and `resource_intro`. Default text changes mark
-translations outdated; removing an object removes its registered translations.
-**Translate** covers both the registered fields and the locale-file introduction.
-Existing translations, including shipped locale-file translations, are preserved
-unless **Override existing translations** is selected.
+With the experimental core object-editor translation support, save your cards and
+follow **Manage translations** to Site texts. The component filter includes both
+the heading/introduction and the card text. Button destinations are not translated.
 
-This testing component requires the local core object-editor translation feature.
-Theme components themselves contain no Ruby registration code.
+Object-editor translation management requires the accompanying core changes; it
+is not supplied by this component alone. Without them, card text falls back to the
+values saved in the object editor.
+
+## Files
+
+- `settings.yml`: default cards and the object-editor form.
+- `locales/en.yml`: heading, introduction, and editor field labels.
+- `javascripts/discourse/components/community-welcome.gjs`: translates and renders cards.
+- `javascripts/discourse/api-initializers/community-welcome.gjs`: places the panel above the topic list.
+- `common/common.scss`: responsive card layout using Discourse theme colors.
+
+## Updating from Community resources
+
+This version replaces `resource_sections` with `welcome_cards`. Existing resource
+settings and translations are not migrated to the new cards. Record any content
+or translations you want to keep before updating, then recreate them as welcome
+cards.
 
 ## Development
 
-Run `pnpm install` to install the lint tools. Run `discourse_theme watch .` against
-your development site to upload the component and sync edits. The CLI prints the
-preview and settings URLs for the installed component.
+Run `pnpm install` to install the lint tools. Use `discourse_theme watch .` to sync
+the component to your development site.
